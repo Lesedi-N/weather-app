@@ -1,4 +1,13 @@
-.weather{
-    border: 1px solid rgb(146, 139, 139);
-    border-radius: 15px;
+.weather {
+  border: 1px solid rgb(146, 139, 139);
+  border-radius: 15px;
+  max-width: 600px;
+  display: block;
+  margin: 25px auto;
+  padding: 10px;
+  font-family: "Times New Roman", Times, serif;
+}
+
+li {
+  list-style: none;
 }
