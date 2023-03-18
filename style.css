@@ -10,6 +10,7 @@
 
 li {
   list-style: none;
+  text-transform: capitalize;
 }
 
 strong{
