@@ -2,11 +2,11 @@ function currentDate(timestamp) {
 let date = new Date(timestamp);
 let hours = date.getHours();
 if ( hours < 10 ) {
-hours = 0 + hours;
+hours = "0" + hours;
 }
 let minutes = date.getMinutes();
 if ( minutes < 10){
-    minutes = 0 + minutes;
+    minutes = "0" + minutes;
 }
 let days = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"]
 let day = days[date.getDay()];
@@ -15,7 +15,6 @@ return day + " " + hours + ":" + minutes;
 }
 
 function displayTemp(response) {
-    console.log(response.data);
 let temperatureElement = document.querySelector("#temperature");
 temperatureElement.innerHTML = Math.round(response.data.main.temp);
 let cityElement = document.querySelector("#city");
@@ -32,12 +31,18 @@ let iconElement = document.querySelector("#icon");
 iconElement.setAttribute("src","https://openweathermap.org/img/wn/" + response.data.weather[0].icon + "@2x.png");
 iconElement.setAttribute("alt", response.data.weather[0].description);
 }
-
+function search(city){
 let apiKey = "e5d59a8b6235a1f821f95b35ab5b2c07";
-//let city = "Paris";
-let apiUrl =
-  "http://api.openweathermap.org/data/2.5/weather?q=New York&appid=e5d59a8b6235a1f821f95b35ab5b2c07&units=metric";
-
-
+let apiUrl ="http://api.openweathermap.org/data/2.5/weather?q="+ city +"&appid=" + apiKey+ "&units=metric";
 axios.get(apiUrl).then(displayTemp);
+}
 
+function buttonSubmit(event){
+event.preventDefault();
+let cityInputElement = document.querySelector("#city-input");
+search(cityInputElement.value);
+
+}
+search("New York");
+let form = document.querySelector("#search-form");
+form.addEventListener("submit",buttonSubmit);
